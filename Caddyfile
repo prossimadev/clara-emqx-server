@@ -1,0 +1,8 @@
+# Gestione della dashboard sulla porta 8443
+stage-mqtt.clara.help:443 {
+    # Usa i tuoi certificati Let's Encrypt esistenti
+    tls /data/certs/live/stage-mqtt.clara.help/fullchain.pem /data/certs/live/stage-mqtt.clara.help/privkey.pem
+
+    # Invia il traffico a EMQX sulla porta HTTP standard
+    reverse_proxy emqx-server:18083
+}

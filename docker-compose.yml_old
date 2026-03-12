@@ -1,0 +1,22 @@
+services:
+  emqx:
+    image: emqx/emqx:latest
+    container_name: emqx-server
+    restart: unless-stopped
+    ports:
+      - "1883:1883"      # Protocollo MQTT
+      - "8083:8083"      # MQTT via WebSockets
+      - "18083:18083"    # Dashboard GUI (Web)
+      - "8084:8084"      # MQTT via WebSockets (SSL)
+      - "8883:8883"      # MQTT (SSL)
+    volumes:
+      - emqx-data:/opt/emqx/data
+      - emqx-log:/opt/emqx/log
+      - /etc/letsencrypt:/opt/emqx/etc/certs/letsencrypt:ro
+    environment:
+      - EMQX_LISTENERS__SSL__DEFAULT__BIND=0.0.0.0:8883
+      - EMQX_LISTENERS__SSL__DEFAULT__SSL_OPTIONS__KEYFILE=/opt/emqx/etc/certs/letsencrypt/live/stage-mqtt.clara.help/privkey.pem
+      - EMQX_LISTENERS__SSL__DEFAULT__SSL_OPTIONS__CERTFILE=/opt/emqx/etc/certs/letsencrypt/live/stage-mqtt.clara.help/fullchain.pem
+volumes:
+  emqx-data:
+  emqx-log:
