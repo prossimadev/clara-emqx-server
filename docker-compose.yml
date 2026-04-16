@@ -10,6 +10,7 @@ services:
       - "8084:8084"      # WebSockets (SSL)
       - "8883:8883"      # MQTT (SSL)
       - "18084:18084"    # Dashboard (SSL nativa EMQX - opzionale se usi Caddy)
+      - "443:8883"       # Bind 443 su 8883 per porta alternativa
     volumes:
       - emqx-data:/opt/emqx/data
       - emqx-log:/opt/emqx/log
