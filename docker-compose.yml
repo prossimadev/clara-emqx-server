@@ -17,8 +17,8 @@ services:
       - /etc/letsencrypt:/opt/emqx/etc/certs/letsencrypt:ro
     environment:
       - EMQX_LISTENERS__SSL__DEFAULT__BIND=0.0.0.0:8883
-      - EMQX_LISTENERS__SSL__DEFAULT__SSL_OPTIONS__KEYFILE=/opt/emqx/etc/certs/letsencrypt/live/stage-mqtt.clara.help/privkey.pem
-      - EMQX_LISTENERS__SSL__DEFAULT__SSL_OPTIONS__CERTFILE=/opt/emqx/etc/certs/letsencrypt/live/stage-mqtt.clara.help/fullchain.pem
+      - EMQX_LISTENERS__SSL__DEFAULT__SSL_OPTIONS__KEYFILE=/opt/emqx/etc/certs/letsencrypt/live/mqtt.clara.help/privkey.pem
+      - EMQX_LISTENERS__SSL__DEFAULT__SSL_OPTIONS__CERTFILE=/opt/emqx/etc/certs/letsencrypt/live/mqtt.clara.help/fullchain.pem
 
   caddy:
     image: caddy:latest
